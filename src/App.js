@@ -12,6 +12,9 @@ const particleOptions = {
       value: "#0d47a1",
     },
   },*/
+  backgroundMode: {
+    enable: true
+  },
   fpsLimit: 60,
   interactivity: {
     detectsOn: "canvas",
@@ -34,55 +37,46 @@ const particleOptions = {
         size: 40,
       },
       push: {
-        quantity: 2,
+        quantity: 1,
       },
       repulse: {
-        distance: 200,
+        distance: 100,
         duration: 0.4,
       },
     },
   },
   particles: {
     color: {
-      value: "#ffffff",
+      value: ["#f67e7d", "#843b62", "#621940"]
     },
     links: {
-      color: "#ffffff",
-      distance: 150,
-      enable: true,
-      opacity: 0.5,
-      width: 1,
-    },
-    collisions: {
-      enable: true,
+      color: "#ffb997",
+      enable: true
     },
     move: {
-      direction: "none",
       enable: true,
-      outMode: "bounce",
-      random: false,
-      speed: 4,
-      straight: false,
-    },
-    number: {
-      density: {
-        enable: true,
-        value_area: 500,
-      },
-      value: 80,
-    },
-    opacity: {
-      value: 0.6,
-    },
-    shape: {
-      type: "circle",
+      speed: 6
     },
     size: {
-      random: true,
-      value: 1,
+      value: 4,
+      random: {
+        enable: true,
+        minimumValue: 1
+      },
+      animation: {
+        enable: true,
+        speed: 2.5,
+        minimumValue: 1
+      }
     },
-  },
-  detectRetina: true,
+    opacity: {
+      value: 0.8,
+      random: {
+        enable: true,
+        minimumValue: 0.4
+      }
+    }
+  }
 }
 
 
