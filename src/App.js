@@ -81,6 +81,7 @@ const particleOptions = {
 
 
 class App extends Component {
+  //this is for the react tsparticles
   constructor(props) {
     super(props);
 
@@ -97,6 +98,19 @@ class App extends Component {
   particlesLoaded(container) {
     console.log(container);
   }
+
+//setting yup state for the iput box functionality
+constructor() {
+  super();
+  this.state = {
+    input: '',
+  }
+}
+
+  onInputChange = (events) => {
+    console.log(events);
+  }
+
   render() {
     return (
       <div className="App">
@@ -109,12 +123,9 @@ class App extends Component {
           loaded={this.particlesLoaded}
           params = {particleOptions}
         />
-
         <Rank />
-        <ImageLinkForm />
-
-        {/* 
-          <FacRecongnition />*/}
+        <ImageLinkForm onInputChange={this.onInputChange}/>
+        <FacRecongnition  />
 
       </div>
     );
