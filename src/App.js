@@ -58,7 +58,7 @@ const particleOptions = {
       speed: 6
     },
     size: {
-      value: 4,
+      value: 0,
       random: {
         enable: true,
         minimumValue: 1

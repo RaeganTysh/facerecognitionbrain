@@ -1,10 +1,11 @@
 .tilt {
     
-    padding-top: 20px;
-    padding-bottom: 10px;    
-    height: '100px';
-    border-color: rgb(63, 64, 65);
-    border-radius: 5px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    line-height: 1px;    
+    /*height: 20%;*/
+    /*border: 1px solid rgb(63, 64, 65); */
+    border-radius: 10px;  /*rounded corners*/ 
     background: linear-gradient(89deg, #04C8DE 0%, #FF5EDF 100%); /*w3c*/
 
 }

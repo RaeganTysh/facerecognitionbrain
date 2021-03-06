@@ -7,12 +7,13 @@ import './logo.css';
 
 const Logo = () => {
     return (
-        <div className='ma4 mt0'>
-            <Tilt className="parallax-effect" perspective={500}>
-            <div className= "tilt">
-            <a href="https://www.freeiconspng.com/img/2549" title="Image from freeiconspng.com"><img src="https://www.freeiconspng.com/uploads/brain-png-31.png" width="100" alt="brain png" /></a>
-                <h1> Face Recongnition App </h1>
-            </div>
+        <div className='ma4 mt0 '>
+            <Tilt className="parallax-effect" perspective={500} >
+                <div className="tilt">
+                    <h1> Magic Brain </h1>
+                    <a href="https://www.freeiconspng.com/img/2549" title="Image from freeiconspng.com"><img src="https://www.freeiconspng.com/uploads/brain-png-31.png" width="100" alt="brain png" /></a>
+                    <h1> Face Recongnition App </h1>
+                </div>
             </Tilt>
 
         </div >
@@ -24,3 +25,5 @@ export default Logo;
 //👽 👽
 
 //style={{ height: '100px'}}
+//ma- margin all
+//mt margin top
