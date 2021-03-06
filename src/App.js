@@ -81,9 +81,12 @@ const particleOptions = {
 
 
 class App extends Component {
-  //this is for the react tsparticles
+  //this is for the react tsparticles (props), 
   constructor(props) {
     super(props);
+    this.state = {
+      input: '',
+    }
 
     this.particlesInit = this.particlesInit.bind(this);
     this.particlesLoaded = this.particlesLoaded.bind(this);
@@ -99,37 +102,43 @@ class App extends Component {
     console.log(container);
   }
 
-//setting yup state for the iput box functionality
-constructor() {
-  super();
-  this.state = {
-    input: '',
-  }
-}
+  //setting up state for the input box functionality
+  //constructor() {
+  //super();
 
+
+
+  //collects input form user
   onInputChange = (events) => {
-    console.log(events);
+    console.log(events.target.value);
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Navigation />
-        <Logo />
-        <Particles 
-          className='particles'
-          id="tsparticles"
-          init={this.particlesInit}
-          loaded={this.particlesLoaded}
-          params = {particleOptions}
-        />
-        <Rank />
-        <ImageLinkForm onInputChange={this.onInputChange}/>
-        <FacRecongnition  />
-
-      </div>
-    );
+  onButtonSubmit = () => {
+    console.log('click');
   }
+
+
+render() {
+  return (
+    <div className="App">
+      <Navigation />
+      <Logo />
+      <Particles
+        className='particles'
+        id="tsparticles"
+        init={this.particlesInit}
+        loaded={this.particlesLoaded}
+        params={particleOptions}
+      />
+      <Rank />
+      <ImageLinkForm
+        onInputChange={this.onInputChange}
+        onButtonSubmit={this.onButtonSubmit} />
+      {/*<FaceRecongnition />*/}
+
+    </div>
+  );
+}
 }
 
 export default App;
