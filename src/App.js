@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Particles from "react-tsparticles";
-import Clarifai from 'clarifai-nodejs-grpc';
+import Clarifai from 'clarifai';
 import Navigation from './components/navigation/navigation';
 import FaceRecongnition from './components/facerecognition/facerecognition';
 import Logo from './components/logo/logo';
@@ -90,10 +90,13 @@ const particleOptions = {
 
 class App extends Component {
   //this is for the react tsparticles (props), 
+  //input - usere input
+  //
   constructor(props) {
     super(props);
     this.state = {
       input: '',
+      imageUrl: '',
     }
 
     this.particlesInit = this.particlesInit.bind(this);
@@ -116,13 +119,13 @@ class App extends Component {
 
 
 
-  //collects input form user
+  //collects input from user
   onInputChange = (events) => {
     console.log(events.target.value);
   }
 
   onButtonSubmit = () => {
-    console.log('click');
+    this.setState({imageUrl: this.state.input});
     app.models
         .predict(
         // HEADS UP! Sometimes the Clarifai Models can be down or not working as they are constantly getting updated.
@@ -135,6 +138,7 @@ class App extends Component {
         // to:
         //.predict('c0c0ac362b03416da06ab3fa36fb58e3', this.state.input)
         Clarifai.FACE_DETECT_MODEL,
+        //above pics the model you wnat to use 
         this.state.input)
       .then(response => {
         console.log('hi', response)
@@ -176,7 +180,7 @@ class App extends Component {
         <ImageLinkForm
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecongnition />
+        <FaceRecongnition imageUrl= {this.state.imageUrl}/>
 
       </div>
     );
