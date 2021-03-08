@@ -1,12 +1,14 @@
 .form {
     width: 700px;
     /*div pattern background*/
-    background-color: #E5E5F7;
+    /*background-color: #E5E5F7;
     opacity: 0.8;
     background-image:  linear-gradient(135deg, #444CF7 25%, transparent 25%), linear-gradient(225deg, #444CF7 25%, transparent 25%), linear-gradient(45deg, #444CF7 25%, transparent 25%), linear-gradient(315deg, #444CF7 25%, #E5E5F7 25%);
     background-position:  11px 0, 11px 0, 0 0, 0 0;
     background-size: 22px 22px;
-    background-repeat: repeat;
+    background-repeat: repeat;*/
+    background: linear-gradient(89deg, #04C8DE 0%, #FF5EDF 100%);
+    opacity: 0.8;
     
 
 }

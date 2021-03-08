@@ -6,6 +6,10 @@ import Rank from './components/rank/rank';
 import './App.css';
 import Particles from "react-tsparticles";
 
+const app =new Clarifai.App({
+  apiKey:'9e5edc8105a84b0d9758712497600bfe'
+});
+
 const particleOptions = {
   /*background: {
     color: {
