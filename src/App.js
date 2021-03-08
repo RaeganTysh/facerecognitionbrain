@@ -121,7 +121,7 @@ class App extends Component {
 
   //collects input from user
   onInputChange = (events) => {
-    console.log(events.target.value);
+    this.setState({input: events.target.value});
   }
 
   onButtonSubmit = () => {
