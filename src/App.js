@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Particles from "react-tsparticles";
-import Clarifai from 'clarifai';
+import Clarifai from 'clarifai-nodejs-grpc';
 import Navigation from './components/navigation/navigation';
+import FaceRecongnition from './components/facerecognition/facerecognition';
 import Logo from './components/logo/logo';
 import ImageLinkForm from './components/imageLinkForm/imagelinkform';
 import Rank from './components/rank/rank';
@@ -175,7 +176,7 @@ class App extends Component {
         <ImageLinkForm
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit} />
-        {/*<FaceRecongnition />*/}
+        <FaceRecongnition />
 
       </div>
     );
