@@ -121,13 +121,13 @@ class App extends Component {
 
   //collects input from user
   onInputChange = (events) => {
-    this.setState({input: events.target.value});
+    this.setState({ input: events.target.value });
   }
 
   onButtonSubmit = () => {
-    this.setState({imageUrl: this.state.input});
+    this.setState({ imageUrl: this.state.input });
     app.models
-        .predict(
+      .predict(
         // HEADS UP! Sometimes the Clarifai Models can be down or not working as they are constantly getting updated.
         // A good way to check if the model you are using is up, is to check them on the clarifai website. For example,
         // for the Face Detect Mode: https://www.clarifai.com/models/face-detection
@@ -137,29 +137,42 @@ class App extends Component {
         // .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
         // to:
         //.predict('c0c0ac362b03416da06ab3fa36fb58e3', this.state.input)
-        Clarifai.FACE_DETECT_MODEL,
+        Clarifai.COLOR_MODEL,
+        //Clarifai.FACE_DETECT_MODEL,
         //above pics the model you wnat to use 
-        this.state.input)
-      .then(response => {
-        console.log('hi', response)
-        if (response) {
-          fetch('http://localhost:3000/image', {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              id: this.state.user.id
-            })
-          })
-            .then(response => response.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count }))
-            })
+        this.state.input)  //do not put this.state.imageURL ( wont work-hard to debug)
+      .then(
+        function (response) {
+          console.log(response);
+        },
+        function (err) {
+          //there was an error
 
         }
-        this.displayFaceBox(this.calculateFaceLocation(response))
-      })
-      .catch(err => console.log(err));
+      );
   }
+
+
+  /*(response => {
+    console.log('hi', response)
+    if (response) {
+      fetch('http://localhost:3000/image', {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: this.state.user.id
+        })
+      })
+        .then(response => response.json())
+        .then(count => {
+          this.setState(Object.assign(this.state.user, { entries: count }))
+        })
+
+    }
+    this.displayFaceBox(this.calculateFaceLocation(response))
+  })
+  .catch(err => console.log(err));
+}*/
 
 
 
@@ -180,7 +193,7 @@ class App extends Component {
         <ImageLinkForm
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecongnition imageUrl= {this.state.imageUrl}/>
+        <FaceRecongnition imageUrl={this.state.imageUrl} />
 
       </div>
     );
