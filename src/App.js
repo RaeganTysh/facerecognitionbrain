@@ -129,7 +129,7 @@ class App extends Component {
       leftCol: clarifaiFace.left_col * width,  //left _col property is a percentage of the width
       topRow: clarifaiFace.top_row * height,
       rightCol: width - (clarifaiFace.right_col * width),
-      bottomRight: height - (clarifaiFace.bottom_row * height),
+      bottomRow: height - (clarifaiFace.bottom_row * height),
     }
   }
 
@@ -188,9 +188,6 @@ class App extends Component {
   .catch(err => console.log(err));
   }*/
 
-
-
-
   render() {
     return (
       <div className="App">
@@ -207,7 +204,7 @@ class App extends Component {
         <ImageLinkForm
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecongnition imageUrl={this.state.imageUrl} />
+        <FaceRecongnition box={this.state.box} imageUrl={this.state.imageUrl} />
 
       </div>
     );
