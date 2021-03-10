@@ -124,9 +124,19 @@ class App extends Component {
     const width = Number(image.width);          //remember set to 500px in js
     const height = Number(image.height);
     console.log(width, height);
-
+    //return the object that is going to fill out the box state - 4 points
+    return {
+      leftCol: clarifaiFace.left_col * width,  //left _col property is a percentage of the width
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRight: height - (clarifaiFace.bottom_row * height),
+    }
   }
 
+  displayFaceBox = (box) => {
+    console.log(box);       //console.log box object make sure it's working
+    this.setState({box: box });
+  }
 
   //collects input from user
   onInputChange = (events) => {
@@ -139,9 +149,9 @@ class App extends Component {
       .predict(
         Clarifai.FACE_DETECT_MODEL,
         this.state.input)             //do not put this.state.imageURL ( wont work-hard to debug- becuase of the way setState works)
-      .then(response => this.calculateFaceLocation(response))
+      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
       //console.log(response.outputs[0].data.regions[0].region_info.bounding_box);  //calling the info from the (response) in the console- return of data in console
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
   // HEADS UP! Sometimes the Clarifai Models can be down or not working as they are constantly getting updated.
@@ -171,12 +181,12 @@ class App extends Component {
         .then(count => {
           this.setState(Object.assign(this.state.user, { entries: count }))
         })
-
+  
     }
     this.displayFaceBox(this.calculateFaceLocation(response))
   })
   .catch(err => console.log(err));
-}*/
+  }*/
 
 
 
