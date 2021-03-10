@@ -97,6 +97,7 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
+      box: {},
     }
 
     this.particlesInit = this.particlesInit.bind(this);
@@ -117,6 +118,14 @@ class App extends Component {
   //constructor() {
   //super();
 
+  calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;  //bounding box is a percentage of the image
+    const image = document.getElementById('inputImage');
+    const width = Number(image.width);          //remember set to 500px in js
+    const height = Number(image.height);
+    console.log(width, height);
+
+  }
 
 
   //collects input from user
@@ -128,30 +137,25 @@ class App extends Component {
     this.setState({ imageUrl: this.state.input });
     app.models
       .predict(
-        // HEADS UP! Sometimes the Clarifai Models can be down or not working as they are constantly getting updated.
-        // A good way to check if the model you are using is up, is to check them on the clarifai website. For example,
-        // for the Face Detect Mode: https://www.clarifai.com/models/face-detection
-        // If that isn't working, then that means you will have to wait until their servers are back up. Another solution
-        // is to use a different version of their model that works like: `c0c0ac362b03416da06ab3fa36fb58e3`
-        // so you would change from:
-        // .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-        // to:
-        //.predict('c0c0ac362b03416da06ab3fa36fb58e3', this.state.input)
-        //Clarifai.COLOR_MODEL,
         Clarifai.FACE_DETECT_MODEL,
-        //above pics the model you wnat to use 
-        this.state.input)  //do not put this.state.imageURL ( wont work-hard to debug- becuase of the way setState works)
-      .then(
-        function (response) {
-          console.log(response.outputs[0].data.regions[0].region_info.bounding_box);  //calling the info from the (response) in the console- return of data in console
-        },
-        function (err) {
-          //there was an error
-
-        }
-      );
+        this.state.input)             //do not put this.state.imageURL ( wont work-hard to debug- becuase of the way setState works)
+      .then(response => this.calculateFaceLocation(response))
+      //console.log(response.outputs[0].data.regions[0].region_info.bounding_box);  //calling the info from the (response) in the console- return of data in console
+      .catch(err => console.log(err))
   }
 
+  // HEADS UP! Sometimes the Clarifai Models can be down or not working as they are constantly getting updated.
+  // A good way to check if the model you are using is up, is to check them on the clarifai website. For example,
+  // for the Face Detect Mode: https://www.clarifai.com/models/face-detection
+  // If that isn't working, then that means you will have to wait until their servers are back up. Another solution
+  // is to use a different version of their model that works like: `c0c0ac362b03416da06ab3fa36fb58e3`
+  // so you would change from:
+  // .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+  // to:
+  //.predict('c0c0ac362b03416da06ab3fa36fb58e3', this.state.input)
+  //Clarifai.COLOR_MODEL,
+  //change model GENERAL_MODEL COLOR_MODEL (Other models-https://www.clarifai.com/developers/model-gallery) 
+  //above pics the model you wnat to use 
 
   /*(response => {
     console.log('hi', response)
