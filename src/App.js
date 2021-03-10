@@ -137,13 +137,13 @@ class App extends Component {
         // .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
         // to:
         //.predict('c0c0ac362b03416da06ab3fa36fb58e3', this.state.input)
-        Clarifai.COLOR_MODEL,
-        //Clarifai.FACE_DETECT_MODEL,
+        //Clarifai.COLOR_MODEL,
+        Clarifai.FACE_DETECT_MODEL,
         //above pics the model you wnat to use 
-        this.state.input)  //do not put this.state.imageURL ( wont work-hard to debug)
+        this.state.input)  //do not put this.state.imageURL ( wont work-hard to debug- becuase of the way setState works)
       .then(
         function (response) {
-          console.log(response);
+          console.log(response.outputs[0].data.regions[0].region_info.bounding_box);  //calling the info from the (response) in the console- return of data in console
         },
         function (err) {
           //there was an error
