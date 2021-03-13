@@ -156,6 +156,11 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  onRouteChange= (route) => {
+    this.setState({route: route});
+
+  }
+
   // HEADS UP! Sometimes the Clarifai Models can be down or not working as they are constantly getting updated.
   // A good way to check if the model you are using is up, is to check them on the clarifai website. For example,
   // for the Face Detect Mode: https://www.clarifai.com/models/face-detection
@@ -193,7 +198,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navigation />
+        <Navigation onRouteChange={this.onRouteChange} />
         <Particles
           className='particles'
           id="tsparticles"
@@ -203,14 +208,14 @@ class App extends Component {
         />
         <Logo />
         { this.state.route === 'signin'
-          ? <SignIn />
+          ? <SignIn onRouteChange ={this.onRouteChange}/>
           : <div> 
             <Rank />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit} />
             <FaceRecongnition box={this.state.box} imageUrl={this.state.imageUrl} />
-          </div>  // to do conditional statement neet to wrap i n {} and insert <div>
+          </div>  // to do conditional statement need to wrap in {JS} and insert <div>
         }
       </div>
 
