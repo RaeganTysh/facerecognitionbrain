@@ -99,6 +99,7 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
+      route: 'signin',  // keeps track of where we are on th page- start on signin whn app loads
     }
 
     this.particlesInit = this.particlesInit.bind(this);
@@ -136,7 +137,7 @@ class App extends Component {
 
   displayFaceBox = (box) => {
     console.log(box);       //console.log box object make sure it's working
-    this.setState({box: box });
+    this.setState({ box: box });
   }
 
   //collects input from user
@@ -193,8 +194,6 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation />
-        <SignIn/>
-        <Logo />
         <Particles
           className='particles'
           id="tsparticles"
@@ -202,13 +201,19 @@ class App extends Component {
           loaded={this.particlesLoaded}
           params={particleOptions}
         />
-        <Rank />
-        <ImageLinkForm
-          onInputChange={this.onInputChange}
-          onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecongnition box={this.state.box} imageUrl={this.state.imageUrl} />
-
+        <Logo />
+        { this.state.route === 'signin'
+          ? <SignIn />
+          : <div> 
+            <Rank />
+            <ImageLinkForm
+              onInputChange={this.onInputChange}
+              onButtonSubmit={this.onButtonSubmit} />
+            <FaceRecongnition box={this.state.box} imageUrl={this.state.imageUrl} />
+          </div>  // to do conditional statement neet to wrap i n {} and insert <div>
+        }
       </div>
+
     );
   }
 }
