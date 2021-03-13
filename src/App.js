@@ -101,6 +101,7 @@ class App extends Component {
       imageUrl: '',
       box: {},
       route: 'signin',  // keeps track of where we are on th page- start on signin whn app loads
+      isSignedIn: 'false'
     }
 
     this.particlesInit = this.particlesInit.bind(this);
@@ -158,6 +159,11 @@ class App extends Component {
   }
 
   onRouteChange= (route) => {
+    if (route === 'signout') {
+      this.setState({isSignedIn: false})
+    } else if (route === 'home') {
+      this.state({isSignedIn: true})
+    }
     this.setState({route: route});
 
   }
