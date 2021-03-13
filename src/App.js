@@ -3,6 +3,7 @@ import Particles from "react-tsparticles";
 import Clarifai from 'clarifai';
 import Navigation from './components/navigation/navigation';
 import SignIn from './components/signin/signin';
+import Register from './components/register/register';
 import FaceRecongnition from './components/facerecognition/facerecognition';
 import Logo from './components/logo/logo';
 import ImageLinkForm from './components/imageLinkForm/imagelinkform';
@@ -206,16 +207,21 @@ class App extends Component {
           loaded={this.particlesLoaded}
           params={particleOptions}
         />
-        <Logo />
-        { this.state.route === 'signin'
-          ? <SignIn onRouteChange ={this.onRouteChange}/>
-          : <div> 
+        <Logo />    
+        { this.state.route === 'home'
+          ? <div> 
             <Rank />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit} />
             <FaceRecongnition box={this.state.box} imageUrl={this.state.imageUrl} />
           </div>  // to do conditional statement need to wrap in {JS} and insert <div>
+          :(
+            this.state.route === 'signin'
+            ?<SignIn onRouteChange ={this.onRouteChange}/>
+            :<Register onRouteChange ={this.onRouteChange}/>
+          )
+          
         }
       </div>
 
