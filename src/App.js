@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Particles from "react-tsparticles";
 import Clarifai from 'clarifai';
 import Navigation from './components/navigation/navigation';
+import SignIn from './components/signin/signin';
 import FaceRecongnition from './components/facerecognition/facerecognition';
 import Logo from './components/logo/logo';
 import ImageLinkForm from './components/imageLinkForm/imagelinkform';
@@ -192,6 +193,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation />
+        <SignIn/>
         <Logo />
         <Particles
           className='particles'
